@@ -11,9 +11,13 @@ class Mastermind():
     size = 4
     def __init__(self):
         pass
-    def Player_Input(self):
-        for i in range (0, Mastermind.size):
-           Mastermind.playerinput.append(int(input("Put your num ".format(i))))
+    def Player_Input(self,playerinput, size):
+        for i in range (1, size+1):
+            put = (int(input("Put your num [{}] ".format(i))))
+            while(len(str(put)) > 1):
+                print('The size of the number must be 1')
+                put = (int(input("Put your num [{}] ".format(i))))
+            Mastermind.playerinput.append(put)
            
     def print_list(self):
         print(Mastermind.playerinput)
