@@ -3,6 +3,7 @@
 """
 import pygame
 import pygame_menu
+from main import start_game
 
 
 
@@ -17,7 +18,7 @@ def set_difficulty(value, difficulty):
 
 def start_the_game():
     # Do the job here !
-    pass
+    start_game()
 
 def Play_Mode(mode, value):
     pass
