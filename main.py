@@ -11,8 +11,8 @@ class Mastermind():
     size = 4
     def __init__(self):
         pass
-    def Player_Input(self,playerinput, size):
-        for i in range (0, size):
+    def Player_Input(self):
+        for i in range (0, Mastermind.size):
            Mastermind.playerinput.append(int(input("Put your num ".format(i))))
            
     def print_list(self):
@@ -20,19 +20,22 @@ class Mastermind():
         print(Mastermind.objective)
         print(Mastermind.result)
 
-    def compare(self, playerinput, objective, result):
+    def compare(self):
+        comparelist = Mastermind.objective.copy()
         for i in range(len(Mastermind.playerinput)):
-            if Mastermind.playerinput[i] == Mastermind.objective[i]:
+            if Mastermind.playerinput[i] == comparelist[i]:
                 Mastermind.result.append(2)
-            elif Mastermind.playerinput[i] in Mastermind.objective:
+                comparelist[i] = 0
+            elif Mastermind.playerinput[i] in comparelist:
                 Mastermind.result.append(1)
+                comparelist[i] = 0
             else:
                 Mastermind.result.append(0)
 
-
 if __name__ == "__main__":
+    
     p1 = Mastermind()
-    p1.Player_Input(Mastermind.playerinput,Mastermind.size)
-    p1.print_list()
-    p1.compare(Mastermind.playerinput, Mastermind.objective, Mastermind.result)
-    p1.print_list()
+    print(p1.objective)
+    p1.Player_Input()
+    p1.compare()
+    print(p1.objective)
