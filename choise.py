@@ -1,14 +1,7 @@
 #!/usr/bin/python3
-"""
-"""
-import random
-
-
-def randomize():
-    """ """
-    objective = []
-    for i in range(4):
-        objective.append(random.randint(1, 6))
-    return (objective)
-
-
+from kivy.app import App
+from kivy.uix.label import Label
+class FirstKivy(App):
+    def build(self):
+        return Label(text="Hello Kivy!")
+FirstKivy().run()

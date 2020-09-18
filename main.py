@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 """
-from choise import randomize
+f#rom choise import randomize
 
 
 class Mastermind():
@@ -31,12 +31,13 @@ class Mastermind():
         self.result = []
         comparelist = self.objective.copy()
         for i in range(len(self.playerinput)):
-            if self.playerinput[i] == comparelist[i]:
-                self.result.append(2)
-                comparelist[i] = 0
-            elif self.playerinput[i] in comparelist:
-                self.result.append(1)
-                comparelist[i] = 0
+            if self.playerinput[i] in comparelist:
+                if self.playerinput[i] == comparelist[i]:
+                    self.result.append(2)
+                    comparelist[i] = 0
+                else:
+                    self.result.append(1)
+                    comparelist[i] = 0
             else:
                 self.result.append(0)
         self.playerinput = []

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 The single player virsion of the game
-""""
+"""
 import random
 from mastermind import Mastermind
 
@@ -27,9 +27,15 @@ if __name__ == "__main__":
     i = 0
     p1 = SinglePlayer()
     print(p1.objective)
-    while p1.result != [ 2,2,2,2] and i < 9:
+    while i < 9:
         p1.Player_Input()
         print(p1.playerinput)
-        p1.compare()
+        p1.compare()    
         print(p1.result)
         i += 1
+        if p1.result == [0, 4]:
+            break
+    if i < 8:
+        print("Congratulations, You're a  Mind Master!")
+    else:
+        print("what a pity, you lost to a bot!!")

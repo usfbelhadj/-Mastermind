@@ -2,7 +2,7 @@
 """
 The base class for mastermind(a game logic)
 """
-from choise import randomize
+#from choise import randomize
 
 
 class Mastermind():
@@ -46,15 +46,15 @@ class Mastermind():
         """
         Function to compare betwen to lists
         """
-        self.result = []
-        comparelist = self.objective.copy()
+        """comparelist = self.objective.copy()"""
+        s1 = 0
+        s2 = sum([self.playerinput[i] == self.objective[i] for i in range(4)])
+        a = self.objective.copy()
         for i in range(len(self.playerinput)):
-            if self.playerinput[i] == comparelist[i]:
-                self.result.append(2)
-                comparelist[i] = 0
-            elif self.playerinput[i] in comparelist:
-                self.result.append(1)
-                comparelist[i] = 0
-            else:
-                self.result.append(0)
+            if self.playerinput[i] in a:
+                s1 += 1
+                a[i] = -1
+                
+        s1 = s1 - s2
+        self.result = [s1, s2]
         self.playerinput = []
