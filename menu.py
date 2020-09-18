@@ -5,12 +5,15 @@ import pygame
 import pygame_menu
 
 
+
 pygame.init()
 surface = pygame.display.set_mode((600, 800))
 
 def set_difficulty(value, difficulty):
-    # Do the job here !
-    pass
+    if value == 1:
+        return(1)
+    else:
+        return (2)
 
 def start_the_game():
     # Do the job here !
