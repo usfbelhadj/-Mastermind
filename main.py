@@ -1,8 +1,13 @@
 #!/usr/bin/python3
 ""
 import pygame
+from mastermind import Mastermind
+from singleplayer import SinglePlayer
+from pygame.locals import *
 
 def start_game():
+    result = [0,0,0,0]
+
     LEFT = 1
     RIGHT = 3
     COLOR = 0
@@ -17,7 +22,7 @@ def start_game():
     ORANGE = (255, 128, 0)
     COLORS = {0: WHITE, 1: GREEN, 2: RED, 3: BLUE,4:YELLOW, 5:PURPLE, 6:ORANGE}
     rows = 12
-    columns = 4
+    columns = 6
     turn = 11
     # This sets the WIDTH and HEIGHT of each grid location
     WIDTH = 40
@@ -36,14 +41,11 @@ def start_game():
         for column in range(columns):
             grid[row].append(0)  # Append a cell
     
-    # Set row 1, cell 5 to one. (Remember rows and
-    # column numbers start at zero.)
-    
     # Initialize pygame
     pygame.init()
     
     # Set the HEIGHT and WIDTH of the screen
-    WINDOW_SIZE = [600, 550]
+    WINDOW_SIZE = [300, 550]
     screen = pygame.display.set_mode(WINDOW_SIZE)
     
     # Set title of screen
@@ -54,7 +56,8 @@ def start_game():
     
     # Used to manage how fast the screen updates
     clock = pygame.time.Clock()
-    
+    m = SinglePlayer()
+   
     # -------- Main Program Loop -----------
     while not done:
         for event in pygame.event.get():  # User did something
@@ -63,17 +66,21 @@ def start_game():
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT:
                 # User clicks the mouse. Get the position
                 pos = pygame.mouse.get_pos()
-                # Change the x/y screen coordinates to grid coordinates
+                # Change the x/y screen coordinates to grid coordinates        
                 column = pos[0] // (WIDTH + MARGIN)
                 row = pos[1] // (HEIGHT + MARGIN)
-
-                # Set that location to one
-                if turn == row:
-                        
+                if turn == row and column < 4:
                     COLOR += 1
                     COLOR = COLOR%7
-
                     grid[row][column] = COLOR
+                    result[column] = COLOR
+                elif column < 10 and row == 11 and column > 4:
+                    turn -= 1
+                    m.Player_Input(result)
+                    m.compare()
+                    print(result)
+                    print(m.playerinput)
+                    print(m.objective)
                 print(COLOR)
                 print("Click ", pos, "Grid coordinates: ", row, column)
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
@@ -88,8 +95,10 @@ def start_game():
                     COLOR -= 1
                     COLOR = COLOR % 7
                     grid[row][column] = COLOR
+                    result[column] = COLOR
                 print(COLOR)
                 print("Click ", pos, "Grid coordinates: ", row, column)
+
     
         # Set the screen background
         screen.fill(BLACK)
@@ -97,21 +106,24 @@ def start_game():
         # Draw the grid
         for row in range(rows):
             for column in range(columns):
-                color = WHITE
-                color = COLORS[grid[row][column]]
-                pygame.draw.rect(screen,
-                                color,
-                                [(MARGIN + WIDTH) * column + MARGIN,
-                                (MARGIN + HEIGHT) * row + MARGIN,
-                                WIDTH,
-                                HEIGHT])
-                #if grid != 0 and row != 0:
-                #   turn -= 1
-
-        pygame.draw.rect(screen, (255, 0, 0), (500, 450, 30, 30))
+                if column < 4:
+                    color = WHITE
+                    color = COLORS[grid[row][column]]
+                    pygame.draw.rect(screen,
+                                    color,
+                                    [(MARGIN + WIDTH) * column + MARGIN,
+                                    (MARGIN + HEIGHT) * row + MARGIN,
+                                    WIDTH,
+                                    HEIGHT])
+        s = 500
+        for i in range(rows):
+            pygame.draw.rect(screen,WHITE,(200,s,80,40))
+            pygame.draw.circle(screen, BLUE, (300, 50), 20, 0)
+            s -= 45
+        #print(b)
         # Limit to 60 frames per second
-        clock.tick(60)
-    
+        clock.tick(120)
+
         # Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
     

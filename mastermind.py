@@ -21,16 +21,11 @@ class Mastermind():
         self.playerinput = []
         self.result = []
         self.size = 4
-    def Player_Input(self):
+    def Player_Input(self, input):
         """
         Take the input of the player
         """
-        for i in range (1, self.size+1):
-            put = (int(input("Put your num [{}] ".format(i))))
-            while(len(str(put)) > 1):
-                print('The size of the number must be 1')
-                put = (int(input("Put your num [{}] ".format(i))))
-            self.playerinput.append(put)
+        self.playerinput = input
            
     def print_list(self):
         """
@@ -54,7 +49,8 @@ class Mastermind():
             if self.playerinput[i] in a:
                 s1 += 1
                 a[i] = -1
-                
+
         s1 = s1 - s2
         self.result = [s1, s2]
         self.playerinput = []
+        print(self.result)
