@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import random
-
-from main import Mastermind
+from mastermind import Mastermind
 
 class SinglePlayer(Mastermind):
     def __init__(self):
@@ -19,10 +18,6 @@ if __name__ == "__main__":
     i = 0
     p1 = SinglePlayer()
     print(p1.objective)
-    '''print(p1.objective)
-    p1.Player_Input()
-    p1.compare()
-    print(p1.objective)'''
     while p1.result != [ 2,2,2,2] and i < 9:
         p1.Player_Input()
         print(p1.playerinput)
