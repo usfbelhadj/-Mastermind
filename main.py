@@ -115,10 +115,15 @@ def start_game():
                                     (MARGIN + HEIGHT) * row + MARGIN,
                                     WIDTH,
                                     HEIGHT])
-        s = 500
+        s = 455
+        pygame.draw.rect(screen,RED,(200,500,80,40))
+
         for i in range(rows):
             pygame.draw.rect(screen,WHITE,(200,s,80,40))
-            pygame.draw.circle(screen, BLUE, (300, 50), 20, 0)
+            pygame.draw.circle(screen, BLUE, (230, s+ 10), 5, 0)
+            pygame.draw.circle(screen, BLUE, (240, s+ 10), 5, 0)
+            pygame.draw.circle(screen, BLUE, (250, s+ 10), 5, 0)
+            pygame.draw.circle(screen, BLUE, (260, s+ 10), 5, 0)
             s -= 45
         #print(b)
         # Limit to 60 frames per second

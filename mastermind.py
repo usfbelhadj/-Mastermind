@@ -54,3 +54,5 @@ class Mastermind():
         self.result = [s1, s2]
         self.playerinput = []
         print(self.result)
+        if self.result == [0, 4]:
+            print('congratulations')

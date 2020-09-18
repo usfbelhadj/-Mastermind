@@ -8,7 +8,7 @@ from main import start_game
 
 class Game():
     pygame.init()
-    surface = pygame.display.set_mode((600, 800))
+    surface = pygame.display.set_mode((400, 550))
 
     def set_difficulty(value, difficulty):
         if value == 1:
@@ -23,7 +23,7 @@ class Game():
     def Play_Mode(mode, value):
         pass
 
-    menu = pygame_menu.Menu(500, 500, 'Master Mind Game',
+    menu = pygame_menu.Menu(550, 400, 'Master Mind Game',
                         theme=pygame_menu.themes.THEME_SOLARIZED)
 
     menu.add_text_input('Enter Your Name :', default='Master')
