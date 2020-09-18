@@ -120,10 +120,14 @@ def start_game():
 
         for i in range(rows):
             pygame.draw.rect(screen,WHITE,(200,s,80,40))
-            pygame.draw.circle(screen, BLUE, (230, s+ 10), 5, 0)
-            pygame.draw.circle(screen, BLUE, (240, s+ 10), 5, 0)
-            pygame.draw.circle(screen, BLUE, (250, s+ 10), 5, 0)
-            pygame.draw.circle(screen, BLUE, (260, s+ 10), 5, 0)
+            a = 230
+            if i == turn:
+                if len(m.result) != 0:
+                    for j in range(m.result[0]):
+                        pygame.draw.circle(screen, BLUE, (a, s+ 10), 5, 0)
+                    for k in range(m.result[1]):
+                        pygame.draw.circle(screen, RED, (a, s+ 10), 5, 0)
+                        a += 10
             s -= 45
         #print(b)
         # Limit to 60 frames per second
